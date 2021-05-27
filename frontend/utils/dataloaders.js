@@ -43,19 +43,19 @@ export function getSuburbAURINData(){
   // Combine city geojson data with city sentiment data
 export function getCityData(){
     const states = require('../data/states.json');
-    for (var i = 0; i < states.features.length; i++){
-      var state_name = states["features"][i]["properties"]["STATE_NAME"];
-      var sentiment = {};
+    for (let i = 0; i < states.features.length; i++){
+      let state_name = states["features"][i]["properties"]["STATE_NAME"];
+      let sentiment = {};
       if (state_name in stateToCity){
         // console.log("Time series data is available for this city ", state_name);
         // Change this line to a GET request to retrieve from the database.
         const weekly = require(`../data/Weekly/${stateToCity[state_name]}_byWeek.json`);
-        var rows = weekly.rows;
+        let rows = weekly.rows;
         rows.forEach((row) => {
-          var city_name = row["key"][0];
-          var year = row["key"][1];
-          var month = row["key"][2];
-          var average_sentiment = row["value"]["sum"] / row["value"]["count"]
+          let city_name = row["key"][0];
+          let year = row["key"][1];
+          let month = row["key"][2];
+          let average_sentiment = row["value"]["sum"] / row["value"]["count"]
           row["value"]["average_sentiment"] = average_sentiment; //Add average sentiment
           // row["key"] = [year, month]; // Don't need the city name in the key
           sentiment[[year, month]] = row["value"];
@@ -70,22 +70,22 @@ export function getCityData(){
   }
 
   export function getTimeSeriesData(){
-    var all_timeseries = {}
+    let all_timeseries = {}
     let melb = require('../data/Weekly/melbourne_byWeek.json');
     let sydney = require('../data/Weekly/sydney_byWeek.json');
     let brisbane = require('../data/Weekly/brisbane_byWeek.json');
     let perth = require('../data/Weekly/perth_byWeek.json');
     let adelaide =require('../data/Weekly/adelaide_byWeek.json');
-    var all = [melb, sydney, brisbane, perth, adelaide];
-    for (var i = 0; i < all.length; i++){
-      var state_name = all[i].rows[0].key[0];
-      var rows = [];
+    let all = [melb, sydney, brisbane, perth, adelaide];
+    for (let i = 0; i < all.length; i++){
+      let state_name = all[i].rows[0].key[0];
+      let rows = [];
       all[i].rows.forEach((row) => {
-        var year = row.key[1]
-        var week_no = row.key[2]
-        var date = getDateOfISOWeek(week_no, year);
-        var avg_sent = row.value.sum / row.value.count
-        var new_row = {'x': date.toLocaleDateString(), 'y': avg_sent}
+        let year = row.key[1]
+        let week_no = row.key[2]
+        let date = getDateOfISOWeek(week_no, year);
+        let avg_sent = row.value.sum / row.value.count
+        let new_row = {'x': date.toLocaleDateString(), 'y': avg_sent}
         rows.push(new_row);
       });
       all_timeseries[state_name] = rows;
@@ -95,15 +95,15 @@ export function getCityData(){
 
   // Takes in city-name in lower-case - i.e. 'melbourne'
   export function getCityTimeSeriesData(city_name){
-    var output = {}
+    let output = {}
     let data = require(`../data/Weekly/${city_name}_byWeek.json`);
-    var rows = [];
+    let rows = [];
     data.rows.forEach((row) => {
-      var year = row.key[1]
-      var week_no = row.key[2]
-      var date = getDateOfISOWeek(week_no, year);
-      var avg_sent = row.value.sum / row.value.count
-      var new_row = {'x': date.toLocaleDateString(), 'y': avg_sent}
+      let year = row.key[1]
+      let week_no = row.key[2]
+      let date = getDateOfISOWeek(week_no, year);
+      let avg_sent = row.value.sum / row.value.count
+      let new_row = {'x': date.toLocaleDateString(), 'y': avg_sent}
       rows.push(new_row);
     });
     output[city_name] = rows;
@@ -117,7 +117,7 @@ export function getCityData(){
     let sydney_aurin = require('../data/AURIN/analysis/sydney_aurin_analysis.json');
     let brisbane_aurin = require('../data/AURIN/analysis/brisbane_aurin_analysis.json');
     
-    var cleaned_aurin_data = {}
+    let cleaned_aurin_data = {}
 
     cleaned_aurin_data["melbourne"] = melb_aurin;
     cleaned_aurin_data["adelaide"] = adelaide_aurin;

@@ -48,7 +48,7 @@ const options = {
 
 export default function RegressionChart({aurin, cityName, indepVar}) {
 
-  var lowercase_city = cityName.toLowerCase();
+  let lowercase_city = cityName.toLowerCase();
 
   const pointCityData = aurin[lowercase_city].map(d => {
     return {'x': d[indepVar], 'y': d["sentiment"]}

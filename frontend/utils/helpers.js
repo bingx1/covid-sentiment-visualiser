@@ -4,10 +4,10 @@ export function updateData(featureCollection, accessor) {
     type: 'FeatureCollection',
     features: features.map(f => {
       const values = accessor(f);
-      var curr_sentiment = 0;
-      var curr_count = 0;
-      var curr_max = 0;
-      var curr_min = 0;
+      let curr_sentiment = 0;
+      let curr_count = 0;
+      let curr_max = 0;
+      let curr_min = 0;
       
       if (values){
         curr_sentiment = values.average_sentiment;
@@ -42,9 +42,9 @@ export function decimalYearToMonthAndWeek(decimal_year){
 }
 
 export function getDateOfISOWeek(w, y) {
-  var simple = new Date(y, 0, 1 + (w - 1) * 7);
-  var dow = simple.getDay();
-  var ISOweekStart = simple;
+  let simple = new Date(y, 0, 1 + (w - 1) * 7);
+  let dow = simple.getDay();
+  let ISOweekStart = simple;
   if (dow <= 4)
       ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1);
   else
@@ -53,18 +53,18 @@ export function getDateOfISOWeek(w, y) {
 }
 
 export function combineSuburbWithAurin(suburb_data, aurin_data){
-  for (var i =0; i< suburb_data.features.length; i++){
+  for (let i =0; i< suburb_data.features.length; i++){
     // Suburb code
-    var suburb_id = suburb_data["features"][i]["properties"]["sa2_mainc0"];
-    var aurin_props;
+    let suburb_id = suburb_data["features"][i]["properties"]["sa2_mainc0"];
+    let aurin_props;
     if (!(suburb_id in aurin_data)){
       aurin_props = {sentiment: 0, counts: 0}
     }
     else{
       aurin_props = aurin_data[suburb_id];
     }
-    // Variables to read in 
-    var properties = {
+    // letiables to read in 
+    let properties = {
       ...suburb_data["features"][i].properties,
       ...aurin_props
     };

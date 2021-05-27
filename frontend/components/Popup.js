@@ -17,7 +17,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
-import {decimalYearToDateStr, getDateOfISOWeek, decimalYearToMonthAndWeek} from "../utils/helpers";
+import {getDateOfISOWeek, decimalYearToMonthAndWeek} from "../utils/helpers";
 
 const cityToState = {
   "Adelaide":"South Australia",
@@ -81,20 +81,24 @@ export default function StyledPopup({
     console.log("Abbreviated start-date:", abrv_date1);
     console.log("Abbreviated end-date:", abrv_date2);
     
+    let cases = 0;
+    let deaths1 = 0;
+    let deaths2 = 0;
+    
     if (city_name in cityToState){
-      var cases = 0;
+      
       if (covidCases[cityToState[city_name]][abrv_date2]){
         cases = covidCases[cityToState[city_name]][abrv_date2];
         console.log("Cases: ", cases);
       }
   
-      var deaths1 = 0;
+      
       if (covidDeaths[cityToState[city_name]][abrv_date1]){
         deaths1 = covidDeaths[cityToState[city_name]][abrv_date1];
         console.log("Deaths on start date: ", deaths1);
       }
   
-      var deaths2 = 0;
+      
       if (covidDeaths[cityToState[city_name]][abrv_date2]){
         deaths2 = covidDeaths[cityToState[city_name]][abrv_date2];
         console.log("Deaths on end date: ", deaths2);
