@@ -45,18 +45,16 @@ const options = {
   },
 };
 
-
+// aurin: An arrary of jsons containing suburbs from the city.
 export default function RegressionChart({aurin, cityName, indepVar}) {
 
-  let lowercase_city = cityName.toLowerCase();
-
-  const pointCityData = aurin[lowercase_city].map(d => {
+  const pointCityData = aurin.map(d => {
     return {'x': d[indepVar], 'y': d["sentiment"]}
   })
 
-  const x_data = aurin[lowercase_city].map(r => (r[indepVar]));
+  const x_data = aurin.map(r => (r[indepVar]));
 
-  const y_data = aurin[lowercase_city].map(r => (r["sentiment"]));
+  const y_data = aurin.map(r => (r["sentiment"]));
 
   const linear_reg = regress(x_data, y_data);
 

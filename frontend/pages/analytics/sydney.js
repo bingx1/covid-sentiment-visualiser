@@ -1,6 +1,6 @@
 import {getTimeSeriesData, getAURINDataForAnalysis} from '../../utils/dataloaders';
 import AnalyticsPage from '../../components/AnalyticsPage';
-
+const sydney_aurin = require('../../data/AURIN/analysis/sydney_aurin_analysis.json');
 /*  
 COMP90024 Cloud Computing Project 2
   Team 40:
@@ -14,11 +14,9 @@ export async function getStaticProps(context) {
     console.log("Fetching time series data for analytics for Sydney")
   
     const all_timeseries = getTimeSeriesData();
-  
-    let aurin = getAURINDataForAnalysis();
-  
+    
     return {
-      props: {tsData: all_timeseries, aurinData: aurin} 
+      props: {tsData: all_timeseries, aurinData: sydney_aurin} 
     }
   }
 

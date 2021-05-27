@@ -84,7 +84,6 @@ export default function MapBox({suburbData, cityData,suburbOn, activateSuburbs, 
       srcEvent: {offsetX, offsetY}
     } = event;
     const clickedFeature = features && features[0];
-    // console.log(clickedFeature, features[0]);
     setClickInfo(
       clickedFeature
         ? {
