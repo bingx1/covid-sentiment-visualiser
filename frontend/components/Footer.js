@@ -73,7 +73,7 @@ const Footer = () => {
           component={"a"}
           target="_blank"
           rel="noreferrer noopener"
-          href="https://satoruakiyama.com"
+          href="https://github.com/ccarner/COMP90024-Proj2"
           justify="center"
           style={{
             textDecoration: "none",

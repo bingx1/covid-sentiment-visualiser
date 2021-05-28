@@ -37,7 +37,7 @@ const Social = ({ color }) => {
         component={"a"}
         target="_blank"
         rel="noreferrer noopener"
-        href="https://github.com/ccarner/COMP90024-Proj2"
+        href="https://github.com/bingx1/covid-sentiment-visualiser"
       >
         <GitHubIcon
           className={classes.snsIcon}
