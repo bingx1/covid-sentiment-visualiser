@@ -94,9 +94,8 @@ export function getCityData(){
   }
 
   // Takes in city-name in lower-case - i.e. 'melbourne'
-  export function getCityTimeSeriesData(city_name){
-    let output = {}
-    let data = require(`../data/Weekly/${city_name}_byWeek.json`);
+  // Takes in a json object containing the time-series data for the given city.
+  export function formatTimeSeriesData(data){
     let rows = [];
     data.rows.forEach((row) => {
       let year = row.key[1]
@@ -106,8 +105,7 @@ export function getCityData(){
       let new_row = {'x': date.toLocaleDateString(), 'y': avg_sent}
       rows.push(new_row);
     });
-    output[city_name] = rows;
-    return output;
+    return rows;
   }
 
   export function getAURINDataForAnalysis(){

@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// tsData: an array of json objects. [{x:1,y:2}, {x:3,y:4}]
 export default function AnalyticsPage({tsData, city, aurinData, regressionVars}) {
   const classes = useStyles();
   return (
@@ -54,7 +55,7 @@ export default function AnalyticsPage({tsData, city, aurinData, regressionVars})
           spacing={0}
         />
         <Grid key={100} item>
-            <LineChart cityData={tsData[city.toLowerCase()]} cityName={city}/>
+            <LineChart cityData={tsData} cityName={city}/>
         </Grid>
         {
           regressionVars.map((name, key) =>(
