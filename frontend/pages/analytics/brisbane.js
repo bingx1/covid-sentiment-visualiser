@@ -16,16 +16,17 @@ const brisbane_ts = require('../../data/Weekly/brisbane_byWeek.json');
 export async function getStaticProps(context) {
     console.log("Fetching time series data for analytics for Brisbane")
   
-    const formatted = formatTimeSeriesData(brisbane_ts);
+    const tsData = formatTimeSeriesData(brisbane_ts);
     
     return {
-      props: {tsData: formatted, aurinData: brisbane_aurin} 
+      props: {tsData, brisbane_aurin} 
     }
   }
 
-export default function AnalyticsHome({tsData, aurinData}) {
+export default function AnalyticsHome(props) {
     const vars = ["housing_stress_30_40_rule","average_life_satisfaction_score"];
-    // const formatted = formatTimeSeriesData(brisbane_ts);
+    const tsData = props.tsData;
+    const aurinData = props.brisbane_aurin;
 
     return (
         <AnalyticsPage city="Brisbane" tsData={tsData} aurinData={aurinData} regressionVars={vars}/>

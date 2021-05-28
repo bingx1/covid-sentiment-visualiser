@@ -115,7 +115,7 @@ export default function MapBox({suburbData, cityData,suburbOn, activateSuburbs, 
         height="100vh"
         mapStyle="mapbox://styles/shijiel2/cjvcb640p3oag1gjufck6jcio"
         onViewportChange={setViewport}
-        mapboxApiAccessToken={process.env.MAPBOX_API_TOKEN}
+        mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
         interactiveLayerIds={['data']}
         onHover={onHover}
         onClick={onClick}

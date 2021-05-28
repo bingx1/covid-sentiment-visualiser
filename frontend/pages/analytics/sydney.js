@@ -15,15 +15,18 @@ const sydney_ts = require('../../data/Weekly/sydney_byWeek.json');
 export async function getStaticProps(context) {
     console.log("Fetching time series data for analytics for Sydney")
   
-    const formatted = formatTimeSeriesData(sydney_ts);
+    const tsData = formatTimeSeriesData(sydney_ts);
     
     return {
-      props: {tsData: formatted, aurinData: sydney_aurin} 
+      props: {tsData, sydney_aurin} 
     }
   }
 
-export default function AnalyticsHome({tsData, aurinData}) {
+export default function AnalyticsHome(props) {
     const vars = ["housing_stress_30_40_rule", "median_age", "median_weekly_personal_income", "gini_coefficient","percent_unemployed", "poverty_rate"];
+    const tsData = props.tsData;
+    const aurinData = props.sydney_aurin;
+
     // const formatted = formatTimeSeriesData(sydney_ts);
     return (
         <AnalyticsPage city="Sydney" tsData={tsData} aurinData={aurinData} regressionVars={vars}/>

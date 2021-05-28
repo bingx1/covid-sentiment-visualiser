@@ -15,15 +15,17 @@ const perth_ts = require('../../data/Weekly/perth_byWeek.json');
 export async function getStaticProps(context) {
     console.log("Fetching time series data for analytics for Perth")
   
-    const formatted = formatTimeSeriesData(perth_ts);
+    const tsData = formatTimeSeriesData(perth_ts);
     
     return {
-      props: {tsData: formatted, aurinData: perth_aurin} 
+      props: {tsData, perth_aurin} 
     }
   }
 
-export default function AnalyticsHome({tsData, aurinData}) {
+export default function AnalyticsHome(props) {
     const vars = ["percent_citizenship","homeless_rate","gini_coefficient","average_life_satisfaction_score"];
+    const tsData = props.tsData;
+    const aurinData = props.perth_aurin;
     // const formatted = formatTimeSeriesData(perth_ts);
 
     return (

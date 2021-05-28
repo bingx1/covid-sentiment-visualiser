@@ -15,16 +15,17 @@ const melb_ts = require('../../data/Weekly/melbourne_byWeek.json');
 export async function getStaticProps(context) {
     console.log("Fetching time series data for analytics for Melbourne")
   
-    const formatted = formatTimeSeriesData(melb_ts);
+    const tsData = formatTimeSeriesData(melb_ts);
   
     return {
-      props: {tsData: formatted, aurinData: melb_aurin} 
+      props: {tsData, melb_aurin} 
     }
   }
 
-export default function AnalyticsHome({tsData, aurinData}) {
+export default function AnalyticsHome(props) {
     const vars = ["housing_stress_30_40_rule", "median_age", "median_weekly_personal_income", "percent_nonreligious", "percent_unemployed", "poverty_rate"];
-    // const formatted = formatTimeSeriesData(melb_ts);
+    const tsData = props.tsData;
+    const aurinData = props.melb_aurin;
 
     return (
         <AnalyticsPage city="Melbourne" tsData={tsData} aurinData={aurinData} regressionVars={vars}/>
