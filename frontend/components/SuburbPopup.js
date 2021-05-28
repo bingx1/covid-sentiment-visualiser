@@ -92,7 +92,7 @@ export default function SuburbPopup({
         </TableRow>
             {
                 popup_rows.map((d) => {
-                  console.log(d.prop, feature_props[d.prop]);
+                  // console.log(d.prop, feature_props[d.prop]);
                   return (
                     <TableRow>
                     <TableHead>
